@@ -124,9 +124,12 @@ diff_sets=set1 - set2
 
 print('diff sets values',diff_sets)
 
-# exercise manipulation data in dictionary
+# exercise 
 
 print("\n ---exercise ---\n")
+
+print("\n ---manipulation data in dictionary ---\n")
+
 
 
 person={'name':'John',"age":18,"gender":"male"}
@@ -144,4 +147,28 @@ print('update values from key age',person)
 if "gender" in person:
     del person["gender"]
 
-print('remove gender items in dictionaries',person)
+print('remove gender items in dictionary',person)
+
+print("\n ---word fequency counter ---\n")
+
+sentence=input("enter a sentence :")
+
+# split sentence into words
+
+words=sentence.split()
+
+print("split sentence into words:",words)
+
+# initialize dictionary
+word_count={}
+# count words frequency
+for word in words:
+    word=word.lower()
+    print(word_count)
+    if word in word_count:
+        word_count[word] += 1
+    else:
+        word_count[word] = 1
+
+print('word_count result:', word_count)
+

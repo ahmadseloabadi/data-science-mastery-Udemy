@@ -43,7 +43,7 @@ def read_file_line_by_line(file_name):
 
 # Fungsi utama untuk demonstrasi file handling
 def main():
-    file_name = "example.txt"
+    file_name = "week1/data/example.txt"
     
     # Menulis data ke file
     write_to_file(file_name, "Ini adalah baris pertama.\nIni adalah baris kedua.")

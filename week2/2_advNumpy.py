@@ -81,3 +81,43 @@ random_seed_int = np.random.randint(0,10,size=(4,5))
 print('\n random integer array/matrix 4x5 with seed = 42 :\n',random_seed_int)
 
 
+# exercise 
+
+print('\n -------exercise------ \n')
+print('\n -------broadcasting operations------ \n')
+matrix2 = np.array([[1,2,3],[4,5,6],[7,8,9]])
+
+vector2 = np.array([1,0,-1])
+
+print('\n initial matrix2 :\n', matrix2)
+print('\n initial vector2 :\n', vector2)
+
+print('\n additional matrix and vector:\n', matrix2+vector2)
+print('\n multification matrix and vector:\n', matrix2*vector2)
+
+print('\n -------generate and filter random numbers------ \n')
+
+np.random.seed(None)
+dataset = np.random.randint(1,51,size=(5,5))
+
+print('\n original :\n', dataset)
+
+# filter values > 25 and replace with 0
+
+dataset[dataset > 25] = 0
+
+print('\n modified values > 25 with 0 in dataset :\n', dataset)
+
+# calculate summary statistics
+
+
+print('\n sum of dataset :\n',np.sum(dataset))
+print('\n mean of dataset :\n',np.mean(dataset))
+print('\n max of dataset :\n',np.max(dataset))
+print('\n min of dataset :\n',np.min(dataset))
+print('\n standard deviation of dataset :\n',np.std(dataset))
+print('\n sum along rows of dataset :\n',np.sum(dataset,axis=1))
+print('\n sum along columns of dataset :\n',np.sum(dataset,axis=0))
+
+
+

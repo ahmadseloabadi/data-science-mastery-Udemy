@@ -28,7 +28,7 @@ print('\n change shape\n')
 
 arr1 = np.array([1,2,3,4,5,6])
 
-reshaped = arr1.reshape((3,2))
+reshaped = arr1.reshape((3,2)) # reshaped(rows, columns)
 
 print('\n initial array \n',arr1)
 print('\n reshape array \n',reshaped)
@@ -66,6 +66,67 @@ print('\n sum of array c \n',np.sum(c))
 print('\n mean of array c \n',np.mean(c))
 print('\n max of array c \n',np.max(c))
 print('\n min of array c \n',np.min(c))
+
+
+# array indexing slicing and reshaping with numpy
+
+
+print('\n----- indexing in array with numpy----- \n')
+
+arr3 = np.array([10,20,30,40,50,60])
+print('initial array with numpy :',arr3)
+print('index 0 in array :',arr3[0])
+print('index -1 in array :',arr3[-1])
+
+print('\n----- slicing in array with numpy----- \n')
+print('slicing [1:4] in array :',arr3[1:4])
+print('slicing [:3] in array :',arr3[:3])
+print('slicing [1:] in array :',arr3[1:])
+
+print('\n----- reshaping in array with numpy----- \n')
+print('reshaping (2,3) in array :\n',arr3.reshape(2,3))
+print('reshaping (3,2) in array :\n',arr3.reshape(3,2))
+
+# exercise 
+# generate array for basic mathematical operations
+
+print('\n--- exercise ----- \n')
+print('\n generate array for basic mathematical operations \n')
+import numpy as np
+
+ar1 = np.arange(1,6)
+ar2 = np.arange(6,11)
+
+print('\n initial array a\n',ar1)
+print('\n initial array b\n',ar2)
+
+print('\n additional of array a and b \n',ar1 + ar2)
+print('\n substraction of array a and b \n',ar1 - ar2)
+print('\n multiplication of array a and b \n',ar1 * ar2)
+print('\n devide of array a and b \n',ar1 / ar2)
+
+print('\n create 3x3 matrix and perform operations :\n')
+
+matrix1 = np.array([[1,2,3],[4,5,6],[7,8,9]])
+
+print('create 3x3 matrix1 :\n',matrix1)
+
+# transpose matrix
+
+transpose = np.transpose(matrix1)
+
+print('transpose matrix :\n',transpose)
+
+matrix2 = np.array([[9,8,7],[6,5,4],[3,2,1]])
+print('create 3x3 matrix2 :\n',matrix2)
+
+print('\n additional of matrix matrix1 and matrix2 \n',matrix1 + matrix2)
+print('\n substraction of matrix matrix1 and matrix2 \n',matrix1 - matrix2)
+print('\n multiplication of matrix matrix1 and matrix2 \n',matrix1* matrix2)
+print('\n devide of matrix matrix1 and matrix2 \n',matrix1 / matrix2)
+
+
+
 
 
 

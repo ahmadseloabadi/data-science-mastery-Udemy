@@ -67,7 +67,7 @@ print(df.info())
 # create and modify columns
 print('\n --create and modify columns--\n')
 
-df['Pajak'] = df['Pendapatan'] / 10 # pajak = 10%
+df['Pajak'] = (df['Pendapatan'] * 10) / 100 # pajak = 10%
 
 print('\n create columns "Pajak" where the values from column "Pendapatan" devided by 10:\n',df)
 
@@ -137,8 +137,56 @@ print('\njoin dataframe with how="left":\n',join_df3)
 join_df4 = df1.join(df2,how='right')
 print('\njoin dataframe with how="right":\n',join_df4)
 
+#  exercise
+
+print('\n ---- exercise ----\n')
+print('\n -- handling missing values and renaming columns --\n')
 
 
+import pandas as pd
+import numpy as np 
+
+data_exer = {
+    "Name": ['Alice', 'Bob',np.nan,'David'],
+    "Age": [25,np.nan,30,35],
+    "Score":[85,90,np.nan,88]
+}
+
+df_exer = pd.DataFrame(data_exer)
+
+print('\n initial originall dataframe:\n', df_exer)
+
+df_exer['Age'] = df_exer['Age'].fillna(df_exer['Age'].mean())
+df_exer['Score'] = df_exer['Score'].interpolate()
+
+print('\n fill "Age" column with mean values and "Score" column with interpolate:\n',df_exer)
+
+df_rename = df_exer.rename(columns={'Name':'Student_Name','Score':'Exam:Score'})
+
+print('\n rename columns in dataframe :\n',df_rename)
 
 
+print('\n -- merge two dataset and perform data transformation --\n')
+
+df1_exer = pd.DataFrame({
+    "ID": [1, 2, 3],
+    "Name": ["Alice", "Bob", "Charlie"],
+    "Age": [25, 30, 35],
+})
+
+df2_exer = pd.DataFrame({
+    "ID": [1, 2, 3],
+    "Score": [85, 90, 88],
+})
+
+print('\n initial dataset 1:\n', df1_exer)
+print('\n initial dataset 2:\n', df2_exer)
+
+merge_df_exer = pd.merge(df1_exer, df2_exer,how='inner',on='ID')
+
+print('\nmerge dataframe with how="inner" on="ID":\n',merge_df_exer)
+
+merge_df_exer['Score_percentage'] = (merge_df_exer['Score'] * 100) / 100
+
+print('\n transform dataset :\n',merge_df_exer)
 

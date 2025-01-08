@@ -85,6 +85,66 @@ sns.heatmap(corr_matrix,annot=True,cmap='coolwarm')
 plt.title('Heatmap correlation')
 plt.show()
 
+# practice
+
+
+# Membuat data
+np.random.seed(42)
+data = {
+    "Group": np.random.choice(["A", "B", "C"], 300),
+    "Score_1": np.random.normal(loc=50, scale=10, size=300),
+    "Score_2": np.random.normal(loc=60, scale=15, size=300),
+    "Year": np.random.choice(["2020", "2021", "2022"], 300)
+}
+
+df = pd.DataFrame(data)
+
+# Membuat histogram
+plt.hist(df['Score_1'], bins=15, alpha=0.5, label='Score 1', color='blue')
+plt.hist(df['Score_2'], bins=15, alpha=0.5, label='Score 2', color='orange')
+
+# Menambahkan label dan legenda
+plt.xlabel('Scores')
+plt.ylabel('Frequency')
+plt.title('Histogram of Score 1 and Score 2')
+plt.legend()
+
+# Menampilkan plot
+plt.show()
+
+
+# Violin Plot
+sns.violinplot(x="Group", y="Score_1", data=df, palette="Set2")
+plt.title('Violin Plot of Score 1 by Group')
+plt.show()
+
+# Box Plot
+sns.boxplot(x="Group", y="Score_2", data=df, palette="Set3")
+plt.title('Box Plot of Score 2 by Group')
+plt.show()
+
+fig, axes = plt.subplots(2, 2, figsize=(12, 10))
+
+# Plot 1: Histogram Score 1
+axes[0, 0].hist(df['Score_1'], bins=15, color='blue', alpha=0.7)
+axes[0, 0].set_title('Histogram of Score 1')
+
+# Plot 2: Histogram Score 2
+axes[0, 1].hist(df['Score_2'], bins=15, color='orange', alpha=0.7)
+axes[0, 1].set_title('Histogram of Score 2')
+
+# Plot 3: Box Plot Score 1
+sns.boxplot(x="Group", y="Score_1", data=df, ax=axes[1, 0], palette="Set2")
+axes[1, 0].set_title('Box Plot of Score 1 by Group')
+
+# Plot 4: Violin Plot Score 2
+sns.violinplot(x="Group", y="Score_2", data=df, ax=axes[1, 1], palette="Set3")
+axes[1, 1].set_title('Violin Plot of Score 2 by Group')
+
+# Menyesuaikan layout
+plt.tight_layout()
+plt.show()
+
 
 
 

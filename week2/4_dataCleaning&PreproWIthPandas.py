@@ -190,3 +190,47 @@ merge_df_exer['Score_percentage'] = (merge_df_exer['Score'] * 100) / 100
 
 print('\n transform dataset :\n',merge_df_exer)
 
+print('\n ---- practice ----\n')
+
+# Contoh dataset
+df1 = pd.DataFrame({
+    "ID": [1, 2, 3,4],
+    "Name": ["Alice", "Bob", "Charlie",'lukas'],
+    "Age": [25, 30, 35,20],
+    "Gender":['female',np.nan,np.nan,np.nan]
+})
+
+df2 = pd.DataFrame({
+    "ID": [1, 2, 3,4],
+    "Score": [85, 90, 88,99]
+})
+
+df3 = pd.DataFrame({
+    "ID": [1, 2, 3,4],
+    "City": ["New York", "Los Angeles", "Chicago","New York"]
+})
+
+print('\n initial dataset 1:\n', df1)
+print('\n initial dataset 2:\n', df2)
+print('\n initial dataset 3:\n', df3)
+
+# Drop columns dengan lebih dari 50% nilai yang hilang
+threshold = 0.5 * len(df1)
+df_cleaned = df1.dropna(thresh=threshold, axis=1,inplace=True)
+print("Data setelah drop kolom dengan lebih dari 50% nilai yang hilang:")
+print(df_cleaned)
+
+# Merge ketiga dataset
+merge_df1df2= pd.merge(df1, df2, on="ID",how='inner')
+merged_df = pd.merge(merge_df1df2, df3, on="ID",how='inner')
+
+# Analisis hubungan sederhana
+print("Data hasil penggabungan:")
+print(merged_df)
+print("\nRata-rata skor berdasarkan kota:")
+print(merged_df.groupby("City")["Score"].mean())
+
+# One-hot encoding
+df_Onehot = pd.get_dummies(merged_df, columns=["City"], prefix="City")
+print("\nData setelah one-hot encoding:")
+print(df_Onehot)

@@ -44,3 +44,33 @@ print('\n matrix multiplication:\n',matrix_multi2)
 
 # special matrix
 
+# indentity matrix /matrix identitas
+
+I = np.eye(3)
+print('\n identity matrix:\n',I)
+
+# zero matrix
+
+Z = np.zeros((3,3))
+
+print('\n zero matrix:\n',Z)
+
+D = np.diag([1,2,3])
+
+print('\n diagonal matrix:\n',D)
+
+# exercise 
+
+# create matrix and vector
+
+M = np.array([[1,2,3],[4,5,6],[7,8,9]])
+V = np.array([1,0,-1])
+
+# matrix-vector multiplication
+print('\n initial matrix M :\n',M)
+print('\n initial matrix zero Z :\n',Z)
+matrix_vector_multi = np.dot(M, V)
+print('\n matrix multiplication:\n',matrix_vector_multi)
+
+# practice
+

@@ -34,68 +34,74 @@ print('\n eigenVectors:\n',eigenVec)
 import numpy as np
 from scipy.linalg import lu
 
-print('\n LU Decomposition \n')
+print('\n --LU Decomposition-- \n')
 # Matriks A
-A = np.array([[4, 3],
+C = np.array([[4, 3],
               [6, 3]])
 
 # LU Decomposition
-P, L, U = lu(A)
+P, L, U = lu(C)
 
-print("Matriks A:")
-print(A)
+print("Matriks C:")
+print(C)
 print("\nLower Triangular Matrix (L):")
 print(L)
 print("\nUpper Triangular Matrix (U):")
 print(U)
 
-print('\n QR Decomposition \n')
+print('\n --QR Decomposition-- \n')
 # QR Decomposition
-Q, R = np.linalg.qr(A)
+Q, R = np.linalg.qr(C)
 
-print("\nMatriks A:")
-print(A)
+print("\nMatriks C:")
+print(C)
 print("\nMatriks Q (Ortogonal):")
 print(Q)
 print("\nMatriks R (Segitiga Atas):")
 print(R)
 
-print('\n Cholesky Decomposition \n')
+print('\n --Cholesky Decomposition-- \n')
 
 from numpy.linalg import cholesky
 
 # Matriks harus simetris dan positif definit
-B = np.array([[4, 2],
+D = np.array([[4, 2],
               [2, 3]])
 
 # Cholesky Decomposition
-L = cholesky(B)
+L = cholesky(D)
 
-print("\nMatriks B:")
-print(B)
+print("\nMatriks D:")
+print(D)
 print("\nLower Triangular Matrix (L):")
 print(L)
 
-print('\n Singular Value Decomposition (SVD) \n')
+print('\n --Singular Value Decomposition (SVD)-- \n')
 # SVD
-U, Sigma, VT = np.linalg.svd(A)
+U, S, VT = np.linalg.svd(C)
 
-print("\nMatriks A:")
-print(A)
+print("\nMatriks C:")
+print(C)
 print("\nMatriks U:")
 print(U)
 print("\nSingular Values (Sigma):")
-print(Sigma)
+print(S)
 print("\nMatriks V Transpose:")
 print(VT)
 
-print('\n Eigenvalue Decomposition \n')
+# Reconstruct
+Sigma = np.zeros((2, 2))
+np.fill_diagonal(Sigma, S)
+reconstructed = U @ Sigma @ VT
+print("\nReconstructed Matrix \n", reconstructed)
+
+print('\n --Eigenvalue Decomposition-- \n')
 
 # Eigenvalue Decomposition
-eigenvalues, eigenvectors = np.linalg.eig(A)
+eigenvalues, eigenvectors = np.linalg.eig(C)
 
-print("\nMatriks A:")
-print(A)
+print("\nMatriks C:")
+print(C)
 print("\nEigenvalues:")
 print(eigenvalues)
 print("\nEigenvectors:")

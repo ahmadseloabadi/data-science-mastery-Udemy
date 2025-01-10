@@ -74,3 +74,67 @@ print('\n matrix multiplication:\n',matrix_vector_multi)
 
 # practice
 
+import numpy as np
+print('\n Compute the determinant and inverse of a 2×2 matrix using NumPy\n')
+# Define a 2x2 matrix
+matrix = np.array([[4, 7],
+                   [2, 6]])
+
+# Compute determinant
+det = np.linalg.det(matrix)
+print(f"Determinant: {det}")
+
+# Compute inverse (only if determinant is non-zero)
+if det != 0:
+    inverse = np.linalg.inv(matrix)
+    print("Inverse:")
+    print(inverse)
+else:
+    print("The matrix is singular and does not have an inverse.")
+
+print('\nVerify properties of matrix multiplication\n')
+# Define two matrices
+A = np.array([[1, 2],
+              [3, 4]])
+B = np.array([[5, 6],
+              [7, 8]])
+
+# Verify associative property: A(BC) == (AB)C
+C = np.array([[2, 1],
+              [0, 3]])
+left = A @ (B @ C)  # A(BC)
+right = (A @ B) @ C  # (AB)C
+
+print("A(BC):")
+print(left)
+print("(AB)C:")
+print(right)
+print("Associative property holds:", np.array_equal(left, right))
+
+# Verify distributive property: A(B + C) == AB + AC
+D = np.array([[1, 0],
+              [2, 1]])
+left_dist = A @ (B + D)  # A(B + D)
+right_dist = (A @ B) + (A @ D)  # AB + AD
+
+print("A(B + D):")
+print(left_dist)
+print("AB + AD:")
+print(right_dist)
+print("Distributive property holds:", np.array_equal(left_dist, right_dist))
+
+print('\nCreate a block diagonal matrix using NumPy\n')
+from scipy.linalg import block_diag
+
+# Define individual blocks
+block1 = np.array([[1, 2],
+                   [3, 4]])
+block2 = np.array([[5, 6]])
+block3 = np.array([[7]])
+
+# Create a block diagonal matrix
+block_diag_matrix = block_diag(block1, block2, block3)
+
+print("Block Diagonal Matrix:")
+print(block_diag_matrix)
+

@@ -126,3 +126,103 @@ theta_opt = stochastic_gradient_descent(X_b,y,theta,learning_rate,n_epochs)
 print('\n optimized parameters: ',theta_opt)
 
 # practice
+import numpy as np
+import matplotlib.pyplot as plt
+from mpl_toolkits.mplot3d import Axes3D
+
+# 1. Visualize the Loss Function's Surface and SGD Optimization Path
+def loss_function(x, y):
+    return x**2 + y**2  # Simple quadratic loss
+
+def gradient(x, y):
+    return 2 * x, 2 * y  # Gradient of the function
+
+# Initialize variables for SGD
+x, y = 5, 5  # Starting point
+learning_rate = 0.1
+steps = 20
+path = [(x, y)]
+
+# SGD Optimization Path
+for _ in range(steps):
+    grad_x, grad_y = gradient(x, y)
+    x -= learning_rate * grad_x
+    y -= learning_rate * grad_y
+    path.append((x, y))
+
+# Create grid for surface plot
+X = np.linspace(-5, 5, 100)
+Y = np.linspace(-5, 5, 100)
+X, Y = np.meshgrid(X, Y)
+Z = loss_function(X, Y)
+
+# Plot the surface and the optimization path
+fig = plt.figure(figsize=(10, 7))
+ax = fig.add_subplot(111, projection='3d')
+ax.plot_surface(X, Y, Z, cmap='viridis', alpha=0.8)
+path = np.array(path)
+ax.plot(path[:, 0], path[:, 1], loss_function(path[:, 0], path[:, 1]), color='red', marker='o')
+ax.set_title("Loss Surface and SGD Optimization Path")
+plt.show()
+
+# 2. Implement Mini-Batch SGD and Compare it with Vanilla SGD
+# Dataset
+data_X = np.linspace(-5, 5, 100)
+data_Y = 3 * data_X + 2 + np.random.normal(0, 1, 100)  # Linear data with noise
+
+# Mini-Batch SGD
+def mini_batch_sgd(X, Y, batch_size, learning_rate, epochs):
+    w, b = 0, 0  # Initialize parameters
+    n = len(X)
+    for _ in range(epochs):
+        indices = np.random.permutation(n)
+        X, Y = X[indices], Y[indices]
+        for i in range(0, n, batch_size):
+            X_batch = X[i:i + batch_size]
+            Y_batch = Y[i:i + batch_size]
+            grad_w = -2 * np.mean(X_batch * (Y_batch - (w * X_batch + b)))
+            grad_b = -2 * np.mean(Y_batch - (w * X_batch + b))
+            w -= learning_rate * grad_w
+            b -= learning_rate * grad_b
+    return w, b
+
+# Vanilla SGD
+def vanilla_sgd(X, Y, learning_rate, epochs):
+    w, b = 0, 0  # Initialize parameters
+    for _ in range(epochs):
+        for i in range(len(X)):
+            grad_w = -2 * X[i] * (Y[i] - (w * X[i] + b))
+            grad_b = -2 * (Y[i] - (w * X[i] + b))
+            w -= learning_rate * grad_w
+            b -= learning_rate * grad_b
+    return w, b
+
+# Compare both methods
+mini_batch_result = mini_batch_sgd(data_X, data_Y, batch_size=10, learning_rate=0.01, epochs=100)
+vanilla_result = vanilla_sgd(data_X, data_Y, learning_rate=0.01, epochs=100)
+
+print("Mini-Batch SGD Results (w, b):", mini_batch_result)
+print("Vanilla SGD Results (w, b):", vanilla_result)
+
+# 3. Use Adam Optimizer for a More Complex Dataset
+from keras.optimizers import Adam
+import tensorflow as tf
+
+# Synthetic non-linear dataset
+X = np.linspace(-1, 1, 100)
+Y = X**3 + 0.1 * np.random.normal(0, 1, 100)  # Non-linear data with noise
+
+# Build a simple model in TensorFlow
+model = tf.keras.Sequential([tf.keras.layers.Dense(1, input_dim=1)])
+model.compile(optimizer=Adam(learning_rate=0.01), loss='mse')
+
+# Train the model
+model.fit(X, Y, epochs=100, verbose=0)
+
+# Predict and visualize
+Y_pred = model.predict(X)
+plt.scatter(X, Y, label="Data")
+plt.plot(X, Y_pred, color="red", label="Adam Optimizer")
+plt.legend()
+plt.title("Adam Optimizer on Non-Linear Data")
+plt.show()

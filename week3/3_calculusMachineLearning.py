@@ -28,3 +28,14 @@ f = x**3 - 5*x + 7
 derivative_exer = sp.diff(f,x)
 
 print('\n derivatives:',derivative_exer)
+
+# define derivatives a multivariable function
+
+x,y = sp.symbols('x y')
+f = x**2 + 3*y**2 - 4*x*y
+grad_x=sp.diff(f,x)
+grad_y=sp.diff(f,y)
+
+print('\ngradient:')
+print('\ngradient_x:',grad_x)
+print('\ngradient_y:',grad_y)

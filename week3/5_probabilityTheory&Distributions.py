@@ -131,6 +131,8 @@ plt.title("Poisson Distribution")
 plt.show()
 
 # practice
+
+print('\n Create and visualize a multinomial distribution for multi-class data\n')
 import numpy as np
 import matplotlib.pyplot as plt
 
@@ -150,6 +152,8 @@ plt.title("Multinomial Distribution - Average Class Frequencies")
 plt.xlabel("Classes")
 plt.ylabel("Average Frequency")
 plt.show()
+
+print('\nCompare Gaussian and uniform distributions for continuous data\n')
 
 # Generate Gaussian data
 mu, sigma = 0, 1  # Mean and standard deviation
@@ -174,6 +178,7 @@ plt.ylabel("Density")
 plt.legend()
 plt.show()
 
+print('\nUse probability distributions to simulate and analyze real-world datasets\n')
 # Simulate website clicks using Poisson distribution
 lambda_ = 5  # Average number of clicks per minute
 poisson_data = np.random.poisson(lambda_, 1000)

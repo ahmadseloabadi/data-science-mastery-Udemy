@@ -50,3 +50,35 @@ plt.bar(x,y,color='black')
 plt.title('poisson distribution')
 plt.show()
 
+# Gaussian Distribution (Normal Distribution)
+# - Used in Gaussian Naive Bayes: Assumes features follow a Gaussian distribution.
+# - Used in Kernel Density Estimation: For non-parametric density estimation.
+# Example: Classifying continuous features like age, height, etc., in Gaussian Naive Bayes.
+
+# Bernoulli Distribution
+# - Used for binary classification problems.
+# - Example: Spam detection (spam or not spam), churn prediction (yes or no).
+# - Model: Bernoulli Naive Bayes is specifically designed for binary data.
+
+# Binomial Distribution
+# - Used in Logistic Regression to model binary outcomes (success/failure).
+# - Example: Predicting whether a customer will make a purchase (yes or no).
+
+# Poisson Distribution
+# - Models count data or events that occur within a fixed interval.
+# - Example: Predicting the number of website clicks, the number of customer arrivals in a store.
+# - Applications: Poisson regression is often used for such tasks.
+
+# Exponential Distribution
+# - Used to model the time until an event occurs (e.g., failure rates in reliability analysis).
+# - Example: Predicting the time between user interactions on a website.
+
+# Uniform Distribution
+# - Used to model a distribution where all outcomes are equally likely.
+# - Example: Random search in hyperparameter tuning (randomly sampling values within a range).
+
+# General Notes:
+# These distributions form the foundation for many machine learning algorithms and models.
+# Understanding their use cases helps in selecting the right model or approach for a given problem.
+
+

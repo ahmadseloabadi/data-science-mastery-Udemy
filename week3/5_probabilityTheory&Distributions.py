@@ -46,7 +46,7 @@ from scipy.stats import poisson
 lam = 3
 x = np.arange(0,10)
 y = poisson.pmf(x,lam)
-plt.bar(x,y,color='black')
+plt.bar(x,y,color='orange')
 plt.title('poisson distribution')
 plt.show()
 
@@ -81,4 +81,21 @@ plt.show()
 # These distributions form the foundation for many machine learning algorithms and models.
 # Understanding their use cases helps in selecting the right model or approach for a given problem.
 
+# exercise
+# Problem
+# - A disease affects 1% of a population
+# - A test is 95% accurate for diseased individuals and 90% accurate for non-diseased individuals 
+# - Find the probability of having the disease given a positive test result
 
+def bayes_theorema(prior, sensitivity,specificity):
+    evidence = (sensitivity * prior) + ((1 - specificity) * (1 - prior))
+    posterior = (sensitivity * prior) / evidence
+    return posterior
+
+
+prior = 0.01 # 1% prevalence
+sensitivity = 0.95 # True positive rate
+specificity = 0.90 # True negative rate
+
+posterior = bayes_theorema(prior, sensitivity,specificity)
+print('\nprobability of disease given positive test :',posterior)

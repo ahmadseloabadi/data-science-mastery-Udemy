@@ -94,7 +94,7 @@ print("\nStandard Deviation: ", std_dev)
 
 # perform a T-test
 
-import scipy.stats as ttest_ind
+from scipy.stats import ttest_ind
 
 # sample dataset
 
@@ -114,4 +114,64 @@ if p_value < alpha:
 else:
     print("Failt to reject the null hypothesis: no significant difference")
 
-    
+# practice 
+print('\n 1. Visualize the distribution of data and highlight mean, median, and mode using Matplotlib\n')
+import numpy as np
+import matplotlib.pyplot as plt
+from scipy import stats
+
+# Contoh data
+data = np.random.normal(loc=50, scale=10, size=1000)
+
+# Hitung mean, median, dan mode
+mean = np.mean(data)
+median = np.median(data)
+mode_result = stats.mode(data, keepdims=True)  # Perhatikan 'keepdims=True'
+mode = mode_result.mode[0]  # Mode diakses melalui .mode[0]
+
+# Plot distribusi
+plt.figure(figsize=(8, 5))
+plt.hist(data, bins=30, alpha=0.6, color='g', label='Histogram')
+plt.axvline(mean, color='blue', linestyle='dashed', linewidth=2, label=f'Mean: {mean:.2f}')
+plt.axvline(median, color='orange', linestyle='dashed', linewidth=2, label=f'Median: {median:.2f}')
+plt.axvline(mode, color='red', linestyle='dashed', linewidth=2, label=f'Mode: {mode:.2f}')
+plt.title('Data Distribution')
+plt.legend()
+plt.show()
+
+print('\nPerform hypothesis testing on real-world datasets (e.g., comparing exam scores of two groups)\n')
+
+from scipy.stats import ttest_ind
+
+# Contoh data grup A dan grup B
+group_a = np.random.normal(75, 10, 30)
+group_b = np.random.normal(70, 15, 30)
+
+# Uji hipotesis (two-sample t-test)
+stat, p_value = ttest_ind(group_a, group_b)
+
+# Menampilkan hasil
+print("T-statistic:", stat)
+print("P-value:", p_value)
+
+# Interpretasi hasil
+if p_value < 0.05:
+    print("Kesimpulan: Ada perbedaan signifikan antara kedua grup.")
+else:
+    print("Kesimpulan: Tidak ada perbedaan signifikan antara kedua grup.")
+
+print('\nCalculate confidence intervals for proportions in a dataset\n')
+
+import statsmodels.api as sm
+
+# Contoh data: 200 responden, 120 setuju
+n = 200  # Total responden
+success = 120  # Responden yang setuju
+prop = success / n  # Proporsi
+
+# Confidence interval
+ci_low, ci_high = sm.stats.proportion_confint(success, n, alpha=0.05, method='normal')
+
+# Menampilkan hasil
+print(f"Proporsi: {prop:.2f}")
+print(f"Confidence Interval: ({ci_low:.2f}, {ci_high:.2f})")
